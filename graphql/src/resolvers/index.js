@@ -10,7 +10,7 @@ export default (storage, pubsub) => ({
   Query: {
     tasks: (root, args, context, info) => {
       initStorage(storage);
-      return JSON.parse(storage.getItem('tasks'));
+      return [];//JSON.parse(storage.getItem('tasks'));
     }
   },
   Mutation: {
@@ -31,7 +31,7 @@ export default (storage, pubsub) => ({
   },
   Subscription: {
     taskAdded: {
-      subscribe: () => pubsub.asyncIterator(['TASK_ADDED']),
+      subscribe: () => pubsub.asyncIterator(['TASK_ADDEDX']),
     }
   }
 });
