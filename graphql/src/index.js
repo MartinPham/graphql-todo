@@ -2,7 +2,6 @@ import http from 'http';
 import express from 'express';
 import console from 'chalk-console';
 import { ApolloServer } from 'apollo-server-express';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 
 import { LocalStorage } from 'node-localstorage';

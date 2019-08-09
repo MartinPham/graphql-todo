@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 export default () => {
   const [name, setName] = useState('');
-  const [addTask, { data }] = useMutation(gql`
+  const [addTask] = useMutation(gql`
     mutation AddTask($name: String) {
       addTask(name: $name)
     }
