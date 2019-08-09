@@ -1,5 +1,13 @@
 export default `
   type Query {
-    test: String
+    tasks: [Task]
+  }
+
+  type Task {
+    name: String
+  }
+
+  type Mutation {
+    addTask(name: String): Boolean
   }
 `;

@@ -2,9 +2,12 @@ import http from 'http';
 import express from 'express';
 import console from 'chalk-console';
 import { ApolloServer } from 'apollo-server-express';
+import { LocalStorage } from 'node-localstorage';
+
+const localStorage = new LocalStorage('./data');
 
 const typeDefs = require('./schemas').default;
-const resolvers = require('./resolvers').default;
+const resolvers = require('./resolvers').default(localStorage);
 
 
 
