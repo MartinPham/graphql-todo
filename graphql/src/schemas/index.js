@@ -10,4 +10,9 @@ export default `
   type Mutation {
     addTask(name: String): Boolean
   }
+
+
+  type Subscription {
+    taskAdded: Task
+  }
 `;
