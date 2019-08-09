@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 
-import { gql } from 'apollo-boost';
-import { useMutation } from '@apollo/react-hooks';
-
+import { useDispatch } from 'react-redux';
+import { addTask } from './actions';
 
 export default () => {
   const [name, setName] = useState('');
-  const [addTask] = useMutation(gql`
-    mutation AddTask($name: String) {
-      addTask(name: $name)
-    }
-  `);
+  
+  const dispatch = useDispatch();
 
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      addTask({
-        variables: {
-          name
-        }
-      });
+      dispatch(addTask(name));
       setName('');
     }}>
       <input value={name} onChange={(event) => setName(event.target.value)}/>

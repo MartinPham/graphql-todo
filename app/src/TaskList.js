@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectTasks } from './selectors';
+import { browseTasks } from './actions';
+import { appendTask } from './actions';
 
 import { gql } from 'apollo-boost';
-import { useQuery, useSubscription } from '@apollo/react-hooks';
-
+import { useSubscription } from '@apollo/react-hooks';
 
 export default () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
+
   const subscription = useSubscription(gql`
     subscription {
       taskAdded {
@@ -13,30 +21,24 @@ export default () => {
     }
   `);
 
-  const { loading, error, data } = useQuery(gql`
-    {
-      tasks {
-        name
-      }
-    }
-  `);
+  if(subscription.data && subscription.data.taskAdded)
+  {
+    dispatch(appendTask({
+      name: subscription.data.taskAdded.name
+    }));
+  }
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  
+  useEffect(()=> {
+    dispatch(browseTasks());
+  }, []);
 
   return (
     <>
       <ul>
-        {data.tasks.map((task, index) => (
+        {tasks.map((task, index) => (
           <li key={index}>{task.name}</li>
         ))}
       </ul>
-
-      {subscription.data && subscription.data.taskAdded && (
-        <b>{subscription.data.taskAdded.name} added</b>
-      )}
     </>
   );
 }
