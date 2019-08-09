@@ -17,6 +17,7 @@ export default (storage, pubsub) => ({
     addTask:  (root, {name}, context, info) => {
       initStorage(storage);
       const tasks = JSON.parse(storage.getItem('tasks'));
+      
       const newTask = {
         name
       };

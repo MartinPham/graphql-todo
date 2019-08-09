@@ -2,6 +2,9 @@ import http from 'http';
 import express from 'express';
 // import console from 'chalk-console';
 import { ApolloServer } from 'apollo-server-express';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+
+
 import { LocalStorage } from 'node-localstorage';
 import { PubSub } from 'apollo-server';
 
@@ -53,7 +56,9 @@ if(!process.httpServer)
   });
 } else {
   console.info('Reloading HTTP server');
-  process.httpServer.removeListener('request', process.expressApp);
+  // process.httpServer.removeListener('request', process.expressApp);
+  process.httpServer.removeAllListeners('upgrade');
+  process.httpServer.removeAllListeners('request');
   process.expressApp = createExpressApp();
   process.expressApp.apolloServer.installSubscriptionHandlers(process.httpServer);
   process.httpServer.on('request', process.expressApp);
@@ -62,12 +67,12 @@ if(!process.httpServer)
 
 if (module.hot) {
   module.hot.accept();
-  module.hot.dispose(() => {
-    (async () => {
-      await new Promise(resolve => process.httpServer.close(resolve));
-      process.httpServer = null;
-    })();
-  })
+  // module.hot.dispose(() => {
+  //   (async () => {
+  //     await new Promise(resolve => process.httpServer.close(resolve));
+  //     process.httpServer = null;
+  //   })();
+  // })
 }
 
 
