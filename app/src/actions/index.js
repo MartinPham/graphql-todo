@@ -1,6 +1,9 @@
 export const browseTasks = () => ({
   type: 'TASK_BROWSE'
 });
+export const resetTasks = () => ({
+  type: 'TASK_RESET'
+});
 
 export const addTask = (name) => ({
   type: 'TASK_ADD',

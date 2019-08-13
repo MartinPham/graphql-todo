@@ -14,6 +14,7 @@ export default () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
 
+  console.log('tasks', tasks)
 
   
   const taskAddedSubscription = useSubscription(gql`
@@ -52,7 +53,7 @@ export default () => {
     <>
       <ul>
         {tasks.map((task, index) => (
-          <li key={index}>{task.name}</li>
+          <li key={index}>{task.get('name')}</li>
         ))}
       </ul>
     </>

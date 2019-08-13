@@ -31,6 +31,16 @@ function* addTask({ name }, client) {
   });
 }
 
+function* resetTasks(action, client) {
+  const { data } = yield client.mutate({
+    mutation: gql`
+      mutation {
+        removeAllTasks
+      }
+    `
+  });
+}
+
 export default function* (client) {
   yield all([
     takeLatest('TASK_BROWSE', function*(action) {
@@ -38,6 +48,9 @@ export default function* (client) {
     }),
     takeLatest('TASK_ADD', function*(action) {
       yield addTask(action, client)
+    }),
+    takeLatest('TASK_RESET', function*(action) {
+      yield resetTasks(action, client)
     })
   ]);
 };

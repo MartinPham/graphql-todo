@@ -6,15 +6,15 @@ const taskReducer = (state = null, action = null, client = null) => {
   {
     if(action.type === 'TASKS_SET')
     {
-      return fromJS(action.tasks.map(task => ({
+      return fromJS(action.tasks.map(task => (fromJS({
         name: task.name
-      })))
+      }))))
     }
     else if(action.type === 'TASKS_APPEND')
     {
-      return state.push({
+      return state.push(fromJS({
         name: action.task.name
-      })
+      }))
     }
   }
     
