@@ -27,11 +27,22 @@ export default (storage, pubsub) => ({
       pubsub.publish('TASK_ADDED', { taskAdded: newTask });
 
       return true;
+    },
+    removeAllTasks: (root, args, context, info) => {
+      initStorage(storage);
+      storage.setItem('tasks', JSON.stringify([]));
+
+      pubsub.publish('TASK_RESET', { taskReset: true });
+
+      return true;
     }
   },
   Subscription: {
     taskAdded: {
       subscribe: () => pubsub.asyncIterator(['TASK_ADDED']),
+    },
+    taskReset: {
+      subscribe: () => pubsub.asyncIterator(['TASK_RESET'])
     }
   }
 });

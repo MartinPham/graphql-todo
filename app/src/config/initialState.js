@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 export default {
-  tasks: []
+  tasks: fromJS([])
 };

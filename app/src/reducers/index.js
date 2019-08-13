@@ -1,18 +1,26 @@
-export default (state, action, client = null) => {
-  console.log(action)
-  if(action.type === 'TASKS_SET')
-  {
-    const newState = {...state};
-    newState.tasks = action.tasks;
+import { combineReducers } from 'redux';
+import { fromJS } from 'immutable';
 
-    return newState;
-  }
-  else if(action.type === 'TASKS_APPEND')
+const taskReducer = (state = null, action = null, client = null) => {
+  if(action) 
   {
-    const newState = {...state};
-    newState.tasks.push(action.task);
-
-    return newState;
+    if(action.type === 'TASKS_SET')
+    {
+      return fromJS(action.tasks.map(task => ({
+        name: task.name
+      })))
+    }
+    else if(action.type === 'TASKS_APPEND')
+    {
+      return state.push({
+        name: action.task.name
+      })
+    }
   }
+    
 	return state;
 };
+
+export default combineReducers({
+  tasks: taskReducer
+});

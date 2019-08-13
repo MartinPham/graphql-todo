@@ -13,8 +13,11 @@ function* browseTasks(action, client) {
     `
   });
 
-  yield put(setTasks(data.tasks));
+  yield put(setTasks(data.tasks.map(task => ({
+    name: task.name
+  }))));
 }
+
 function* addTask({ name }, client) {
   const { data } = yield client.mutate({
     mutation: gql`
