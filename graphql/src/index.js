@@ -4,15 +4,8 @@ import console from 'chalk-console';
 import { ApolloServer } from 'apollo-server-express';
 
 
-import { LocalStorage } from 'node-localstorage';
-import { PubSub } from 'apollo-server';
-
-
-const localStorage = new LocalStorage('./data');
-const pubsub = new PubSub();
-
-const typeDefs = require('./schemas').default;
-const resolvers = require('./resolvers').default(localStorage, pubsub);
+import resolvers from './resolvers';
+import typeDefs from './schemas/main.graphql';
 
 
 

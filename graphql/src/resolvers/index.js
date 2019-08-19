@@ -1,36 +1,31 @@
-const initStorage = (storage) => {
-  const tasksData = storage.getItem('tasks');
-  if(!tasksData)
-  {
-    storage.setItem('tasks', JSON.stringify([]));
-  }
-}
+import getStorage from '../utils/getStorage';
+import getPubSub from '../utils/getPubSub';
 
-export default (storage, pubsub) => ({
+const storage = getStorage();
+const pubsub = getPubSub();
+
+export default {
   Query: {
     tasks: (root, args, context, info) => {
-      initStorage(storage);
-      return JSON.parse(storage.getItem('tasks'));
+      return storage.get('tasks');
     }
   },
   Mutation: {
-    addTask:  (root, {name}, context, info) => {
-      initStorage(storage);
-      const tasks = JSON.parse(storage.getItem('tasks'));
+    addTask: (root, {name}, context, info) => {
+      const tasks = storage.get('tasks');
       
       const newTask = {
         name
       };
       tasks.push(newTask);
-      storage.setItem('tasks', JSON.stringify(tasks));
+      storage.set('tasks', tasks);
 
       pubsub.publish('TASK_ADDED', { taskAdded: newTask });
 
       return true;
     },
     removeAllTasks: (root, args, context, info) => {
-      initStorage(storage);
-      storage.setItem('tasks', JSON.stringify([]));
+      storage.set('tasks', []);
 
       pubsub.publish('TASK_RESET', { taskReset: true });
 
@@ -45,4 +40,4 @@ export default (storage, pubsub) => ({
       subscribe: () => pubsub.asyncIterator(['TASK_RESET'])
     }
   }
-});
+};

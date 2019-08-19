@@ -1910,6 +1910,20 @@ graphql-extensions@0.9.1:
     apollo-server-env "2.4.1"
     apollo-server-types "0.2.1"
 
+graphql-import-loader@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/graphql-import-loader/-/graphql-import-loader-0.2.1.tgz#be90aa5d4dd51b8bbd09ea716c2f8b186316268a"
+  integrity sha512-uN/Ah6ejZYnDqwhyUa/f0rIZ0kmImoOfKTmYRe0rnHuD5rTzW1qcgFbPmHyB05th7OY7UlojfprmMrtVWOBYNg==
+  dependencies:
+    graphql-import "^0.4.5"
+
+graphql-import@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.4.5.tgz#e2f18c28d335733f46df8e0733d8deb1c6e2a645"
+  integrity sha512-G/+I08Qp6/QGTb9qapknCm3yPHV0ZL7wbaalWFpxsfR8ZhZoTBe//LsbsCKlbALQpcMegchpJhpTSKiJjhaVqQ==
+  dependencies:
+    lodash "^4.17.4"
+
 graphql-subscriptions@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-1.1.0.tgz#5f2fa4233eda44cf7570526adfcf3c16937aef11"
@@ -2429,7 +2443,7 @@ lodash.sortby@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
 
-lodash@^4.17.5:
+lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
