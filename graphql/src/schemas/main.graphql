@@ -1,5 +1,5 @@
 type Query {
-  tasks: [String]
+  tasks: [Task]
 }
 
 type Task {
