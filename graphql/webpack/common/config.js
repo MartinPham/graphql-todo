@@ -15,7 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, '../../build')
   },
   resolve: {
-    extensions: ['.js', '.graphql']
+    extensions: ['.js']
   },
   target: 'node'
 };
