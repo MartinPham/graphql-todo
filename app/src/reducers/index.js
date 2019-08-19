@@ -1,20 +1,22 @@
 import { combineReducers } from 'redux';
-import { fromJS } from 'immutable';
+import produce from 'immer';
 
 const taskReducer = (state = null, action = null, client = null) => {
   if(action) 
   {
     if(action.type === 'TASKS_SET')
     {
-      return fromJS(action.tasks.map(task => (fromJS({
+      return action.tasks.map(task => ({
         name: task.name
-      }))))
+      }))
     }
     else if(action.type === 'TASKS_APPEND')
     {
-      return state.push(fromJS({
-        name: action.task.name
-      }))
+      return produce(state, draft => {
+        draft.push({
+          name: action.task.name
+        })
+      })
     }
   }
     

@@ -53,7 +53,7 @@ export default () => {
     <>
       <ul>
         {tasks.map((task, index) => (
-          <li key={index}>{task.get('name')}</li>
+          <li key={index}>{task.name}</li>
         ))}
       </ul>
     </>
