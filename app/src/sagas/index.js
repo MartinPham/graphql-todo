@@ -2,8 +2,10 @@ import { takeLatest, put, all } from 'redux-saga/effects'
 import { gql } from 'apollo-boost';
 import { setTasks } from '../actions';
 
-function* browseTasks(action, client) {
-  const { data } = yield client.query({
+import getClient from '../utils/getClient';
+
+function* browseTasks(action) {
+  const { data } = yield getClient().query({
     query: gql`
       {
         tasks {
@@ -18,8 +20,8 @@ function* browseTasks(action, client) {
   }))));
 }
 
-function* addTask({ name }, client) {
-  const { data } = yield client.mutate({
+function* addTask({ name }) {
+  const { data } = yield getClient().mutate({
     mutation: gql`
       mutation AddTask($name: String) {
         addTask(name: $name)
@@ -31,8 +33,8 @@ function* addTask({ name }, client) {
   });
 }
 
-function* resetTasks(action, client) {
-  const { data } = yield client.mutate({
+function* resetTasks(action) {
+  const { data } = yield getClient().mutate({
     mutation: gql`
       mutation {
         removeAllTasks
@@ -43,14 +45,8 @@ function* resetTasks(action, client) {
 
 export default function* (client) {
   yield all([
-    takeLatest('TASK_BROWSE', function*(action) {
-      yield browseTasks(action, client)
-    }),
-    takeLatest('TASK_ADD', function*(action) {
-      yield addTask(action, client)
-    }),
-    takeLatest('TASK_RESET', function*(action) {
-      yield resetTasks(action, client)
-    })
+    takeLatest('TASK_BROWSE', browseTasks),
+    takeLatest('TASK_ADD', addTask),
+    takeLatest('TASK_RESET', resetTasks)
   ]);
 };

@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectTasks } from './selectors';
-import { browseTasks } from './actions';
-import { appendTask } from './actions';
-import { setTasks } from './actions';
+
+import { selectTasks } from '../selectors';
+import { browseTasks } from '../actions';
+import { appendTask } from '../actions';
+import { setTasks } from '../actions';
 
 import { gql } from 'apollo-boost';
 import { useSubscription } from '@apollo/react-hooks';

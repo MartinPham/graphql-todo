@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { addTask } from './actions';
+import { addTask } from '../actions';
+
 
 export default () => {
   const [name, setName] = useState('');

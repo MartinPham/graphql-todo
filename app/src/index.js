@@ -2,28 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-import {Provider} from 'react-redux';
-import createStore from './utils/createStore';
-
+import { Provider } from 'react-redux';
+import getStore from './utils/getStore';
 
 import { ApolloProvider } from '@apollo/react-hooks';
-import createLink from './utils/createLink';
-import createClient from './utils/createClient';
-
-import App from './App';
+import getClient from './utils/getClient';
 
 
-const link = createLink();
-const client = createClient(link);
+import App from './components/App';
 
-const store = createStore(client);
 
 
 
 ReactDOM.render(
   (
-  <ApolloProvider client={client}>
-    <Provider store={store}>
+  <ApolloProvider client={getClient()}>
+    <Provider store={getStore()}>
       <App />
     </Provider>
   </ApolloProvider>

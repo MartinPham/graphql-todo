@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import produce from 'immer';
 
-const taskReducer = (state = null, action = null, client = null) => {
+const taskReducer = (state = null, action = null) => {
   if(action) 
   {
     if(action.type === 'TASKS_SET')

@@ -4,7 +4,8 @@ import TaskList from './TaskList';
 import CreateTask from './CreateTask';
 
 import { useDispatch } from 'react-redux';
-import { resetTasks } from './actions';
+import { resetTasks } from '../actions';
+
 
 
 function App() {
