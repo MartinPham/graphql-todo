@@ -22,6 +22,5 @@ module.exports = webpackMerge.smart(common, {
   plugins: [
     new CleanWebpackPlugin(), 
     new HotModuleReplacementPlugin()
-  ],
-  watch: true
+  ]
 });

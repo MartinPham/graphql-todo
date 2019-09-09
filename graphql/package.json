@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "dev:watch": "NODE_ENV=development webpack --config webpack/development/config.js",
-    "dev:run": "NODE_ENV=development node build"
+    "dev": "NODE_ENV=development webpack --config webpack/development/config.js && node build",
+    "start": "NODE_ENV=development webpack --config webpack/development/config.js && nohup node build > server.log & webpack --config webpack/development/config.js --watch && killall node"
+
   },
   "dependencies": {
     "apollo-server": "^2.8.1",
