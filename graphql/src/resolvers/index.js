@@ -8,6 +8,50 @@ export default {
   Query: {
     tasks: (root, args, context, info) => {
       return storage.get('tasks');
+    },
+    users: (root, args, context, info) => {
+      return storage.get('users');
+    },
+    friendships: (root, args, context, info) => {
+      const friendships = storage.get('friendships');
+      const users = storage.get('users');
+      return friendships.map(friendship => friendship.users.map(ref => users.filter(user => user.name === ref)[0]));
+    },
+    user: (root, args, context, info) => {
+      const users = storage.get('users');
+      const user = users.filter(user => user.name === args.name)[0];
+      return user;
+    }
+  },
+  Task: {
+    user: (root, args, context, info) => {
+      const users = storage.get('users');
+      for(let user of users)
+      {
+        if(user.name === root.user_name)
+        {
+          return user;
+        }
+      }
+
+      return null;
+    }
+  },
+  User: {
+    tasks: (root, args, context, info) => {
+      const tasks = storage.get('tasks');
+      return tasks.filter(task => task.user_name === root.name);
+    },
+    friends: (root, args, context, info) => {
+      const friendships = storage.get('friendships');
+
+      const users = storage.get('users');
+      const userFriendships = friendships.filter(friendship => friendship.users.indexOf(root.name) > -1);
+
+      let friendRefs = userFriendships.map(friendship => friendship.users.filter(user => user !== root.name));
+      friendRefs = friendRefs.reduce((accumulator, friendRef) => accumulator.concat(friendRef));
+
+      return users.filter(user => friendRefs.indexOf(user.name) > -1);
     }
   },
   Mutation: {

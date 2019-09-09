@@ -32,6 +32,14 @@ export default () => {
     {
       storage.set('tasks', []);
     }
+    if(storage.get('users') === null)
+    {
+      storage.set('users', []);
+    }
+    if(storage.get('friendships') === null)
+    {
+      storage.set('friendships', []);
+    }
   }
 
   return storage;

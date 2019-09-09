@@ -1,31 +1,6 @@
-[18:52:56] [INFO] Creating HTTP server
-[18:52:56] [INFO] Creating Express app
-[18:52:56] [INFO] Creating Apollo server
-[18:52:56] [INFO] Express app created with Apollo middleware
-[18:52:56] [INFO] HTTP server ready at http://localhost:8081
-[18:52:56] [INFO] Websocket server ready at ws://localhost:8081
-[18:53:02] [INFO] Reloading HTTP server
-[18:53:02] [INFO] Creating Express app
-[18:53:02] [INFO] Creating Apollo server
-[18:53:02] [ERROR] Error: Query.name defined in resolvers, but not in schema
-[HMR] Updated modules:
-[HMR]  - ./src/resolvers/index.js
-[HMR]  - ./src/index.js
-[HMR] Update applied.
-[18:53:07] [INFO] Reloading HTTP server
-[18:53:07] [INFO] Creating Express app
-[18:53:07] [INFO] Creating Apollo server
-[18:53:07] [INFO] Express app created with Apollo middleware
-[18:53:07] [INFO] HTTP server reloaded
-[HMR] Updated modules:
-[HMR]  - ./src/resolvers/index.js
-[HMR]  - ./src/index.js
-[HMR] Update applied.
-[18:53:30] [INFO] Reloading HTTP server
-[18:53:30] [INFO] Creating Express app
-[18:53:30] [INFO] Creating Apollo server
-[18:53:30] [INFO] Express app created with Apollo middleware
-[18:53:30] [INFO] HTTP server reloaded
-[HMR] Updated modules:
-[HMR]  - ./src/index.js
-[HMR] Update applied.
+[19:45:41] [INFO] Creating HTTP server
+[19:45:41] [INFO] Creating Express app
+[19:45:41] [INFO] Creating Apollo server
+[19:45:41] [INFO] Express app created with Apollo middleware
+[19:45:41] [INFO] HTTP server ready at http://localhost:8081
+[19:45:41] [INFO] Websocket server ready at ws://localhost:8081

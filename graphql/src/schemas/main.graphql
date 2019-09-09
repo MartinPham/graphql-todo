@@ -1,10 +1,22 @@
 type Query {
   tasks: [Task]
+  users: [User]
+  friendships: [[User]]
+  user(name: String): User
 }
 
 type Task {
   name: String
+  user: User
 }
+
+
+type User {
+  name: String
+  tasks: [Task]
+  friends: [User]
+}
+
 
 type Mutation {
   addTask(name: String): Boolean
